@@ -1,8 +1,8 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 const bcrypt=require('bcryptjs')
-import { UserSchema} from '../models/user';
-const User=require('../models/user')
+import { UserSchema} from '../models/users';
+const User=require('../models/users')
 
 const router=express.Router();
 
