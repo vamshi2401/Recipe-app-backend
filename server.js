@@ -7,7 +7,8 @@ const auth=require('./middleware/auth')
 
 
 
-import { UserRouter } from './routes/user.js';
+
+const UserRouter=require('./routes/user')
 
 
 const app=express()

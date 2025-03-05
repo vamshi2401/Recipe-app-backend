@@ -1,8 +1,8 @@
-import express from "express";
-import jwt from "jsonwebtoken";
-const bcrypt=require('bcryptjs')
-import { UserSchema} from '../models/users';
-const User=require('../models/users')
+const express=require('express');
+const jwt=require('jsonwebtoken');
+const bcrypt=require('bcryptjs');
+//import { UserSchema} from '../models/usermodel.js';
+const User=require('../models/usermodel');
 
 const router=express.Router();
 
@@ -44,5 +44,4 @@ router.post('/login',async (req,res)=>{
   }
 });
 
-
-export {router as UserRouter};
+module.exports=router;
