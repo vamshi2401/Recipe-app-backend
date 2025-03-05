@@ -1,19 +1,20 @@
 const express=require('express')
 const mongoose=require('mongoose')
 require('dotenv').config()
-const User=require('./models/user')
+
 const Recipe=require('./models/recipe')
 const auth=require('./middleware/auth')
-const bcrypt=require('bcryptjs')
 
-const jwt=require('jsonwebtoken')
-const user = require('./models/user')
+
+
+import { UserRouter } from './routes/user';
 
 
 const app=express()
 const PORT=3000
 app.use(express.json());
 
+app.use('/auth',UserRouter)
 
 //home page api
 app.get('/',(req,res)=>{
@@ -22,43 +23,9 @@ app.get('/',(req,res)=>{
 
 //registration page api
 //basic structure for any api get post etc
-app.post('/register',async (req,res)=>{
-  const {username,email,password}=req.body
-  try {
-    const hashedPassword=await bcrypt.hash(password,10)
-    const user=new User({username,email,password:hashedPassword})
-    await user.save()
-    res.json({'msg':'User registered'})
-    console.log('user reg...')
 
-  }
-  catch(err){
-    console.log(err)
-  }
-});
 
-//login page api
-app.post('/login',async (req,res)=>{
-  const {email,password}=req.body
-  try {
-    const user=await User.findOne({email});
-    if (!user || !(await bcrypt.compare(password, user.password))){
-      return res.status(400).json({message:"Invalid credentials"});
-    }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-    
-
-    res.json({message:"login successful",username:user.username,token:token})
-    console.log("user logged in ")
-  }
-
-  catch (err){
-    console.log(err)
-  }
-});
 
 
 //adding new recipes
