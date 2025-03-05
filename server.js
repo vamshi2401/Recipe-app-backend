@@ -11,11 +11,11 @@ const auth=require('./middleware/auth')
 const UserRouter=require('./routes/user')
 
 const cors=require('cors');
-app.use(cors())
+
 const app=express()
 const PORT=3000
 app.use(express.json());
-
+app.use(cors())
 app.use('/auth',UserRouter)
 
 //home page api
