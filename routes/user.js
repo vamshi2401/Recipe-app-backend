@@ -1,6 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+const bcrypt=require('bcryptjs')
 import { UserSchema} from '../models/user';
 const User=require('../models/user')
 
