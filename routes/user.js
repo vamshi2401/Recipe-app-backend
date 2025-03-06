@@ -6,7 +6,7 @@ const User=require('../models/usermodel');
 
 const router=express.Router();
 
-router.post('/auth/register',async (req,res)=>{
+router.post('/register',async (req,res)=>{
   const {username,email,password}=req.body
   try {
     const hashedPassword=await bcrypt.hash(password,10)
@@ -22,7 +22,7 @@ router.post('/auth/register',async (req,res)=>{
 });
 
 //login page api
-router.post('/auth/login',async (req,res)=>{
+router.post('/login',async (req,res)=>{
   const {email,password}=req.body
   try {
     const user=await User.findOne({email});
