@@ -95,7 +95,7 @@ router.delete('/:title', auth, async (req, res) => {
 });
 
 // Search recipes
-router.get('/recipes/:id', async (req, res) => {
+router.get('/search', async (req, res) => {
   try {
     const query = req.query.query;
     if (!query) {
