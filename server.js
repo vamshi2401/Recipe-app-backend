@@ -16,7 +16,7 @@ const cors=require('cors');
 const app=express()
 const PORT=3000
 app.use(express.json());
-app.use(cors())
+app.use(cors({origin: "https://recipe-app-vrcv.onrender.com"}))
 app.use('/auth',UserRouter);
 app.use('/recipes',RecipeRouter)
 
