@@ -122,7 +122,7 @@ router.get('/search', async (req, res) => {
 });
 
 //get recipe by id
-router.get("/:id", auth, async (req, res) => {
+router.get("recipe/:id", auth, async (req, res) => {
   try {
     const recipe = await Recipe.findById(req.params.id);
 
