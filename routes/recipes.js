@@ -41,19 +41,19 @@ router.get('/', async (req, res) => {
 });
 
 // Update a recipe
-router.put('/:title', auth, async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
   try {
-    const { title } = req.params;
-    const { description, ingredients, instructions, imageUrl, cookingTime } = req.body;
+    const { id } = req.params;
+    const { title, description, ingredients, instructions, imageUrl, cookingTime } = req.body;
 
-    const recipe = await Recipe.findOne({ title });
+    const recipe = await Recipe.findById(id);
     if (!recipe) {
       return res.status(404).json({ message: "Recipe not found" });
     }
 
-    if (recipe.author.toString() !== req.user.id) {
-      return res.status(403).json({ message: "You are not authorized to update this recipe" });
-    }
+    // if (recipe.author.toString() !== req.user.id) {
+    //   return res.status(403).json({ message: "You are not authorized to update this recipe" });
+    // }
 
     recipe.title = title || recipe.title;
     recipe.description = description || recipe.description;

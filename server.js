@@ -20,10 +20,7 @@ app.use(cors({origin: "https://recipe-app-vrcv.onrender.com"}))
 app.use('/auth',UserRouter);
 app.use('/recipes',RecipeRouter)
 
-//home page api
-app.get('/',(req,res)=>{
-  res.send("MERN stack...")
-});
+
 
 //registration page api
 //basic structure for any api get post etc
