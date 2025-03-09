@@ -51,9 +51,9 @@ router.put('/:id', auth, async (req, res) => {
       return res.status(404).json({ message: "Recipe not found" });
     }
 
-    // if (recipe.author.toString() !== req.user.id) {
-    //   return res.status(403).json({ message: "You are not authorized to update this recipe" });
-    // }
+    if (recipe.author.toString() !== req.user.id) {
+      return res.status(403).json({ message: "You are not authorized to update this recipe" });
+    }
 
     recipe.title = title || recipe.title;
     recipe.description = description || recipe.description;
