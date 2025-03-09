@@ -71,28 +71,28 @@ router.put('/:id', auth, async (req, res) => {
 });
 
 // Delete a recipe
-router.delete('/:title', auth, async (req, res) => {
-  try {
-    const { title } = req.params;
+// router.delete('/:id', auth, async (req, res) => {
+//   try {
+//     const { title } = req.params;
 
-    const recipe = await Recipe.findOne({ title });
-    if (!recipe) {
-      return res.status(404).json({ message: "Recipe not found" });
-    }
+//     const recipe = await Recipe.findById(id);
+//     if (!recipe) {
+//       return res.status(404).json({ message: "Recipe not found" });
+//     }
 
-    if (recipe.author.toString() !== req.user.id) {
-      return res.status(403).json({ message: "You are not authorized" });
-    }
+//     if (recipe.author.toString() !== req.user.id) {
+//       return res.status(403).json({ message: "You are not authorized" });
+//     }
 
-    await Recipe.deleteOne({ title });
+//     await Recipe.deleteOne({ title });
 
-    res.json({ message: "Recipe deleted" });
-    console.log("Recipe deleted");
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: "Server error" });
-  }
-});
+//     res.json({ message: "Recipe deleted" });
+//     console.log("Recipe deleted");
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ error: "Server error" });
+//   }
+// });
 
 // Search recipes
 router.get('/search', async (req, res) => {
